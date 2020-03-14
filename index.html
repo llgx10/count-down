@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="@llgx">
+    <meta name="copyright" content="#UITman2019">
+    <title>#UITman2019</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=FFF+English+Premier+League:400,200,200italic,300,300italic,900,700italic,700,600italic,600,400italic">
+    <link rel="stylesheet" href="animate.css">
+    <style>body,span{color:#fff}img,span{display:block}body{font-family:'FFF English Premier League',cursive;width:800px;margin:0 auto;text-align:center;background:#222;font-weight:100}div{display:inline-block;line-height:1;padding:20px;font-size:40px}span{font-size:20px}#DAYS,#HOURS,#MINUTES{font-size:100px}#DAYS{color:#db4844}#HOURS{color:#f07c22}#MINUTES{color:#f6da74}#SECONDS{font-size:50px;color:#abcd58}#timer{padding-top:0}</style>
+   <link rel="shortcut icon" href="img/logo.ico" />
+  </head>
+  <body>
+        <div style="text-align: center; padding-bottom: 0;">
+      <img src="img/j2team.png" alt="logo" width="400" class="animated infinite pulse">
+    </div>
+
+    <div id="timer">
+      <!--<div id="DAYS"></div>-->
+      <div id="DAYS"></div>
+      <div id="HOURS"></div>
+      <div id="MINUTES"></div>
+      <div id="SECONDS"></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+      let timeout = null;
+
+      function makeTimer() {
+        // Edit Here
+        //---- let endTime = new Date("'08/08/2018 14:59:59 GMT+0700 (SE Asia Standard Time)"); ----
+        let endTime = new Date("'06/23/2019 13:59:59 GMT+0700 (SE Asia Standard Time)");
+        endTime = (Date.parse(endTime) / 1000);
+
+        let now = new Date();
+        now = (Date.parse(now) / 1000);
+
+        let timeLeft = endTime - now,
+          DAYS = Math.floor(timeLeft / 86400),
+          HOURS = Math.floor((timeLeft - (DAYS * 86400)) / 3600),
+          MINUTES = Math.floor((timeLeft - (DAYS * 86400) - (HOURS * 3600)) / 60),
+          SECONDS = Math.floor((timeLeft - (DAYS * 86400) - (HOURS * 3600) - (MINUTES * 60)));
+
+        if (HOURS === 0 && MINUTES === 0 && SECONDS === 0) {
+          clearTimeout(timeout);
+        } else {
+          if (HOURS < "10") {
+            HOURS = "0" + HOURS;
+          }
+          if (MINUTES < "10") {
+            MINUTES = "0" + MINUTES;
+          }
+          if (SECONDS < "10") {
+            SECONDS = "0" + SECONDS;
+          }
+
+          $("#DAYS").html(DAYS + "<span>DAYS</span>");
+          $("#HOURS").html(HOURS + "<span>HOURS</span>");
+          $("#MINUTES").html(MINUTES + "<span>MINUTES</span>");
+          $("#SECONDS").html(SECONDS + "<span>SECONDS</span>");
+
+          timeout = setTimeout(makeTimer, 1000);
+        }
+      }
+
+      makeTimer();
+    </script>
+    <iframe width="0" height="0" src="https://www.youtube.com/embed/C3UJBMAy5xE?autoplay=1&cc_load_policy=1" frameborder="0"
+allowfullscreen></iframe>
+  </body>
+</html>
